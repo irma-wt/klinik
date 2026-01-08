@@ -48,12 +48,6 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
           'Detail Dokter',
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.more_vert, color: Colors.black),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
