@@ -99,7 +99,7 @@ class PharmacyScreen extends StatelessWidget {
               // Search Bar
               TextField(
                 decoration: InputDecoration(
-                  hintText: 'Cari obat, kategori...',
+                  hintText: 'Cari obat...',
                   prefixIcon: const Icon(Icons.search, color: Colors.grey),
                   filled: true,
                   fillColor: Colors.grey[100],

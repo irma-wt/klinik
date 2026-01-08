@@ -63,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                 // Search Bar
                 TextField(
                   decoration: InputDecoration(
-                    hintText: 'Cari dokter, obat, artikel...',
+                    hintText: 'Cari dokter...',
                     prefixIcon: const Icon(Icons.search, color: Colors.grey),
                     filled: true,
                     fillColor: Colors.grey[100],
