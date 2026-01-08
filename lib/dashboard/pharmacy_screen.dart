@@ -1,6 +1,21 @@
 import 'package:flutter/material.dart';
 import 'drug_detail_screen.dart';
 
+// Helper function untuk format Rupiah
+String formatRupiah(double amount) {
+  String result = amount.toInt().toString();
+  String formatted = '';
+  int count = 0;
+  for (int i = result.length - 1; i >= 0; i--) {
+    count++;
+    formatted = result[i] + formatted;
+    if (count % 3 == 0 && i != 0) {
+      formatted = '.' + formatted;
+    }
+  }
+  return 'Rp $formatted';
+}
+
 // PharmacyScreen
 class PharmacyScreen extends StatelessWidget {
   const PharmacyScreen({Key? key}) : super(key: key);
@@ -10,19 +25,19 @@ class PharmacyScreen extends StatelessWidget {
     final popularProducts = [
       Product(
         name: 'Panadol',
-        price: 15.99,
+        price: 25000,
         image:
             'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=200&h=200&fit=crop',
       ),
       Product(
         name: 'Bodrex Herbal',
-        price: 7.99,
+        price: 12500,
         image:
             'https://images.unsplash.com/photo-1550572017-edd951b55104?w=200&h=200&fit=crop',
       ),
       Product(
         name: 'Konidin',
-        price: 5.99,
+        price: 8500,
         image:
             'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=200&h=200&fit=crop',
       ),
@@ -31,24 +46,24 @@ class PharmacyScreen extends StatelessWidget {
     final saleProducts = [
       Product(
         name: 'OBH Combi',
-        price: 9.99,
-        originalPrice: 15.99,
+        price: 15000,
+        originalPrice: 25000,
         image:
             'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=200&h=200&fit=crop',
         isOnSale: true,
       ),
       Product(
         name: 'Betadine',
-        price: 6.99,
-        originalPrice: 10.99,
+        price: 10500,
+        originalPrice: 17500,
         image:
             'https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=200&h=200&fit=crop',
         isOnSale: true,
       ),
       Product(
         name: 'Bodrekin',
-        price: 7.99,
-        originalPrice: 12.99,
+        price: 12000,
+        originalPrice: 20000,
         image:
             'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=200&h=200&fit=crop',
         isOnSale: true,
@@ -336,7 +351,7 @@ class _ProductCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '\$${product.price.toStringAsFixed(2)}',
+                        formatRupiah(product.price),
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -365,7 +380,7 @@ class _ProductCard extends StatelessWidget {
                   // Original Price (if on sale)
                   if (product.isOnSale && product.originalPrice != null)
                     Text(
-                      '\$${product.originalPrice!.toStringAsFixed(2)}',
+                      formatRupiah(product.originalPrice!),
                       style: TextStyle(
                         fontSize: 11,
                         color: Colors.grey[500],

@@ -1,5 +1,20 @@
 import 'package:flutter/material.dart';
 
+// Helper function untuk format Rupiah
+String formatRupiah(double amount) {
+  String result = amount.toInt().toString();
+  String formatted = '';
+  int count = 0;
+  for (int i = result.length - 1; i >= 0; i--) {
+    count++;
+    formatted = result[i] + formatted;
+    if (count % 3 == 0 && i != 0) {
+      formatted = '.' + formatted;
+    }
+  }
+  return 'Rp $formatted';
+}
+
 // Model untuk Product
 class Product {
   final String name;
@@ -194,7 +209,7 @@ class _CartScreenWidgetState extends State<CartScreenWidget> {
                     children: [
                       const Text('Subtotal', style: TextStyle(fontSize: 14)),
                       Text(
-                        '\$${subtotal.toStringAsFixed(2)}',
+                        formatRupiah(subtotal),
                         style: const TextStyle(fontSize: 14),
                       ),
                     ],
@@ -205,7 +220,7 @@ class _CartScreenWidgetState extends State<CartScreenWidget> {
                     children: [
                       const Text('Pajak', style: TextStyle(fontSize: 14)),
                       Text(
-                        '\$${taxes.toStringAsFixed(2)}',
+                        formatRupiah(taxes),
                         style: const TextStyle(fontSize: 14),
                       ),
                     ],
@@ -222,7 +237,7 @@ class _CartScreenWidgetState extends State<CartScreenWidget> {
                         ),
                       ),
                       Text(
-                        '\$${total.toStringAsFixed(2)}',
+                        formatRupiah(total),
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -288,7 +303,7 @@ class _CartScreenWidgetState extends State<CartScreenWidget> {
                         ),
                       ),
                       Text(
-                        '\$${total.toStringAsFixed(2)}',
+                        formatRupiah(total),
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -437,7 +452,7 @@ class _CartItemWidget extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      '\$${cartItem.totalPrice.toStringAsFixed(2)}',
+                      formatRupiah(cartItem.totalPrice),
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -641,7 +656,7 @@ class _DrugDetailScreenState extends State<DrugDetailScreen> {
                   ),
                   const Spacer(),
                   Text(
-                    '\$${widget.product.price.toStringAsFixed(2)}',
+                    formatRupiah(widget.product.price),
                     style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
